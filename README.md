@@ -31,3 +31,8 @@ O sistema permite o registro, monitoramento e análise de cargas químicas, forn
 - Docker
 - GitHub Actions
 - Google Cloud Platform (GCP)
+### Documentação:
+- Draw.io
+- Mermaid
+- Markdown
+- Swagger
