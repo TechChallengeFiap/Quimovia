@@ -5,3 +5,4 @@ O documento está dividido por domínios, e cada domínio possui seus casos de u
 
 ## Domínios:
 - ### [Cargas Químicas](cargas-quimicas/03-casos-de-uso.md)
+- ### [Documentações de Cargas e Produtos](documentacoes-cargas-produtos/03-casos-de-uso.md)
