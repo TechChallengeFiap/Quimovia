@@ -1,7 +1,7 @@
 # Modelagem com Domain Driven Design
 Nesse documento, iremos apresentar as modelagens divididos por domínios, no qual iremos te redirecionar para cada documento de cada domínio, para que você possa entender melhor cada modelagem.
 
-## Domínios
+## Domínios:
 - ### [Cargas Químicas](cargas-quimicas/02-modelagem-com-ddd.md)
 
 
