@@ -4,6 +4,8 @@ Nesse documento, iremos apresentar as modelagens divididos por domínios, no qua
 ## Domínios:
 - ### [Cargas Químicas](cargas-quimicas/02-modelagem-com-ddd.md)
 - ### [Documentações de Cargas e Produtos](documentacoes-cargas-produtos/02-modelagem-com-ddd.md)
+- ### [Produtos Químicos](produtos-quimicos/02-modelagem-com-ddd.md)
+- ### [Usuários e Operações](usuarios-operacoes/02-modelagem-com-ddd.md)
 
 
 ## Linguagem Ubíqua
