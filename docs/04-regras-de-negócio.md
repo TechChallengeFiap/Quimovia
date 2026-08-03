@@ -6,6 +6,8 @@ Nesse documento juntamos as regras de cada entidades por domínio, para que voc�
 - Uma **carga química** deve ter um produto químico associado.
 - Uma **carga química** deve ter um status definido.
 - Uma **carga química** deve ter um responsável técnico definido.
+- Uma **carga química** deve ter um embarcador definido.
+- Uma **carga química** deve ter uma documentação associada.
 ----
 ## Documentação da Carga:
 - Toda documentação deve estar vinculada a uma carga química.
