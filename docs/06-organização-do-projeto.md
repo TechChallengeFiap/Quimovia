@@ -13,11 +13,11 @@ tests/
 README.md
 ```
 
-## Documentação
+## docs
 
 O diretório docs concentrará toda a documentação do projeto, incluindo descrições de domínio, casos de uso, regras de negócio, diagramas e decisões arquiteturais.
 
-## Código-fonte
+## src
 
 O diretório src armazenará o código-fonte da aplicação, organizado em camadas com base na Clean Architecture.
 
@@ -57,7 +57,7 @@ Contém os controladores, rotas e demais componentes de apresentação relaciona
 
 Contém componentes compartilhados entre diferentes módulos, como utilitários, constantes, contratos e classes base.
 
-## Testes
+## tests
 
 O diretório tests reunirá os testes unitários e de integração do projeto, seguindo a mesma organização modular adotada no código-fonte.
 
