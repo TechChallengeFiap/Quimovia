@@ -19,7 +19,7 @@ classDiagram
         CargaQuimica: status
         CargaQuimica: responsável técnico
         CargaQuimica: documentos
-        CargaQuimica: testes
+        CargaQuimica: inspeção
         CargaQuimica: adicionaDocumento()
         CargaQuimica: removeDocumento()
         CargaQuimica: adicionaTeste()
