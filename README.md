@@ -16,6 +16,7 @@ O sistema permite o registro, monitoramento e análise de cargas químicas, forn
 - DDD
 - Arquitetura
 - Casos de uso
+- [Mapeamento de Processos](docs/07-mapeamento-de-processos.md)
 - Diagramas
 
 ## Tecnologias planejadas:
