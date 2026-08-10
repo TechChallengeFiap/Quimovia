@@ -1,8 +1,10 @@
 # Organização do Projeto
 
-O projeto será organizado de forma modular, separando documentação e código-fonte.
+O projeto será organizado de forma modular, separando a documentação técnica do código-fonte e da suíte de testes.
 
-Para consultas de diagrams e afins será utilizado esse mesmo repositório.
+Este mesmo repositório será utilizado para centralizar a documentação, os diagramas e, futuramente, a implementação da aplicação.
+
+## Estrutura inicial
 
 ```text
 docs/
@@ -11,38 +13,56 @@ tests/
 README.md
 ```
 
-## Docs:
-Contém toda a documentação do projeto, incluindo diagramas, especificações e guias de arquitetura.
+## Documentação
 
-## src:
-Contém todo o código-fonte do projeto, organizado em diferentes camadas de acordo com a arquitetura clean.
+O diretório docs concentrará toda a documentação do projeto, incluindo descrições de domínio, casos de uso, regras de negócio, diagramas e decisões arquiteturais.
 
-### domain:
-Pensando em modularidade, cada módulo do domínio será separado em subdiretórios. E terão como objetivo conter apenas as entidades e regras de negócio, sem dependências externas.
-#### chemical-loads:
-Contém as entidades e regras de negócio relacionadas a cargas químicas.
+## Código-fonte
 
-### application:
-Cada módulo do domínio terá um módulo correspondente na camada de aplicação, que será responsável por orquestrar as operações e interações entre os casos de uso e os serviços externos.
-#### chemical-loads:
-Contém os casos de uso e serviços relacionados a cargas químicas.
+O diretório src armazenará o código-fonte da aplicação, organizado em camadas com base na Clean Architecture.
 
-### infrastructure:
-Cada módulo do domínio terá um módulo correspondente na camada de infraestrutura, que será responsável por fornecer implementações concretas para os repositórios, serviços externos e outras dependências.
-#### chemical-loads:
-Contém as implementações de repositórios, serviços externos e outras dependências relacionadas a cargas químicas.
+### domain
 
-### presentation:
-Cada módulo do domínio terá um módulo correspondente na camada de apresentação, que será responsável por expor as APIs, endpoints e interfaces de usuário.
-#### chemical-loads:
-Contém os controladores, rotas e outros componentes relacionados à apresentação de cargas químicas.
+Cada módulo de domínio será separado em subdiretórios próprios, com o objetivo de concentrar entidades, objetos de valor, agregados e regras de negócio, sem dependências externas.
 
-### shared:
-Irá conter componentes compartilhados entre diferentes módulos, como utilitários, constantes e classes base.
+#### chemical-loads
 
-## tests:
-Neste diretório, serão organizados os testes unitários e de integração do projeto, seguindo a mesma estrutura modular do código-fonte.
-#### chemical-loads:
-Contém os testes relacionados a cargas químicas, incluindo testes unitários e de integração.
+Contém as entidades e regras de negócio relacionadas às cargas químicas.
+
+### application
+
+Cada módulo do domínio terá um correspondente na camada de aplicação, responsável por orquestrar os casos de uso e a comunicação com portas e serviços externos.
+
+#### chemical-loads
+
+Contém os casos de uso e os serviços de aplicação relacionados às cargas químicas.
+
+### infrastructure
+
+Cada módulo do domínio terá um correspondente na camada de infraestrutura, responsável por fornecer implementações concretas de repositórios, integrações e demais dependências externas.
+
+#### chemical-loads
+
+Contém as implementações de repositórios, serviços externos e demais dependências relacionadas às cargas químicas.
+
+### presentation
+
+Cada módulo do domínio terá um correspondente na camada de apresentação, responsável por expor APIs, rotas, controladores e futuras interfaces de entrada da aplicação.
+
+#### chemical-loads
+
+Contém os controladores, rotas e demais componentes de apresentação relacionados às cargas químicas.
+
+### shared
+
+Contém componentes compartilhados entre diferentes módulos, como utilitários, constantes, contratos e classes base.
+
+## Testes
+
+O diretório tests reunirá os testes unitários e de integração do projeto, seguindo a mesma organização modular adotada no código-fonte.
+
+#### chemical-loads
+
+Contém os testes relacionados às cargas químicas, incluindo cenários unitários e de integração.
 
 
