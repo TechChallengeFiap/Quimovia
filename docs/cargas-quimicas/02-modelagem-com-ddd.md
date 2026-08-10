@@ -26,6 +26,8 @@ classDiagram
         CargaQuimica: removeTeste()
         CargaQuimica: liberaCarga()
         CargaQuimica: bloqueiaCarga()
+        CargaQuimica: aprovaCarga()
+        CargaQuimica: reprovaCarga()
 ```
 
 **Relacionamentos:**
@@ -51,6 +53,7 @@ O Status da Carga é um Objeto de Valor, pois não possui identidade própria e 
 ```typescript
 enum StatusCarga {
     EM_ANALISE,
+    EM_INSPECAO,
     APROVADA,
     REPROVADA,
     BLOQUEADA,
