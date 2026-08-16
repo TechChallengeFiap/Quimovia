@@ -9,7 +9,26 @@ Este mesmo repositório será utilizado para centralizar a documentação, os di
 ```text
 docs/
 src/
+├── domain/
+│   ├── entities/
+│   └── value-objects/
+│  
+│
+├── application/
+│   ├── use-cases/
+│   └── contracts/
+│
+├── infrastructure/
+|   └── repositories/
+|
+├── presentation/
+│   ├── dtos/
+|   └── controllers/
+│
+└── shared/
+    └── types/
 tests/
+└── mocks/
 README.md
 ```
 
@@ -25,44 +44,51 @@ O diretório src armazenará o código-fonte da aplicação, organizado em camad
 
 Cada módulo de domínio será separado em subdiretórios próprios, com o objetivo de concentrar entidades, objetos de valor, agregados e regras de negócio, sem dependências externas.
 
-#### chemical-loads
+#### entities
+Contém as entidades do domínio, representando os conceitos centrais da aplicação.
 
-Contém as entidades e regras de negócio relacionadas às cargas químicas.
+#### value-objects
+Contém os objetos de valor do domínio, representando conceitos que não possuem identidade própria, mas que são importantes para a modelagem do negócio.
 
 ### application
 
 Cada módulo do domínio terá um correspondente na camada de aplicação, responsável por orquestrar os casos de uso e a comunicação com portas e serviços externos.
 
-#### chemical-loads
+#### use-cases
+Contém os casos de uso da aplicação, implementando a lógica de negócio e coordenando as interações entre entidades, objetos de valor e repositórios.
 
-Contém os casos de uso e os serviços de aplicação relacionados às cargas químicas.
+#### contracts
+Contém os contratos e interfaces utilizados pelos casos de uso, definindo as dependências externas da aplicação.
 
 ### infrastructure
 
 Cada módulo do domínio terá um correspondente na camada de infraestrutura, responsável por fornecer implementações concretas de repositórios, integrações e demais dependências externas.
 
-#### chemical-loads
-
-Contém as implementações de repositórios, serviços externos e demais dependências relacionadas às cargas químicas.
+#### repositories
+Contém as interfaces de repositórios do domínio, definindo contratos para persistência e recuperação de entidades e agregados, sem depender de implementações concretas.
 
 ### presentation
 
 Cada módulo do domínio terá um correspondente na camada de apresentação, responsável por expor APIs, rotas, controladores e futuras interfaces de entrada da aplicação.
 
-#### chemical-loads
+#### dto
+Contém os Data Transfer Objects (DTOs) utilizados para comunicação entre a aplicação e serviços externos, como APIs, bancos de dados e filas de mensagens.
 
-Contém os controladores, rotas e demais componentes de apresentação relacionados às cargas químicas.
+#### controllers
+Contém os controladores responsáveis por receber requisições, validar dados de entrada e coordenar a execução dos casos de uso, retornando respostas apropriadas para os clientes.
 
 ### shared
 
 Contém componentes compartilhados entre diferentes módulos, como utilitários, constantes, contratos e classes base.
 
+#### types
+Contém tipos compartilhados entre diferentes módulos, como interfaces, tipos genéricos e classes base.
+
 ## tests
 
 O diretório tests reunirá os testes unitários e de integração do projeto, seguindo a mesma organização modular adotada no código-fonte.
 
-#### chemical-loads
-
-Contém os testes relacionados às cargas químicas, incluindo cenários unitários e de integração.
+### mocks
+Contém implementações simuladas de repositórios, serviços externos e quaisquer outras dependências que não sejam o foco do teste, permitindo isolar o comportamento das unidades testadas.
 
 
