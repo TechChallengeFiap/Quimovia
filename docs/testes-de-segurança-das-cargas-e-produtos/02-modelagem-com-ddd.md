@@ -21,7 +21,7 @@ As informações produzidas por este domínio são utilizadas posteriormente pel
 - id: Identificador único do teste de segurança.
 - carga química: Carga química submetida à inspeção.
 - produto químico: Produto químico avaliado durante a inspeção.
-- fiscal responsável: Fiscal responsável pela realização da inspeção.
+- fiscal: Fiscal responsável pela realização da inspeção.
 - status: Situação atual do teste de segurança.
 - itens de segurança: Conjunto de verificações realizadas durante a inspeção.
 - laudo de segurança: Laudo emitido após a conclusão da inspeção.
