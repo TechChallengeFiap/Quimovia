@@ -102,6 +102,6 @@ O agregado Carga Química garante que:
 - Toda carga possua um Produto Químico associado.
 - Toda carga possua um Responsável Técnico definido.
 - A documentação obrigatória esteja vinculada à carga.
-- Os testes sejam registrados antes da aprovação, quando necessários.
+- As inspeções sejam registradas antes da aprovação, quando necessários.
 - O status da carga siga apenas transições válidas.
 - Apenas cargas que atendam às regras de negócio possam ser aprovadas ou liberadas.
