@@ -34,7 +34,7 @@ classDiagram
 - Possui um Produto Químico.
 - Possui um Responsável Técnico.
 - Possui um ou mais Documentos.
-- Possui zero ou mais Testes.
+- Possui zero ou mais Inspeções.
 
 **Regras:**
 - Uma carga química deve ter um produto químico associado.
@@ -77,7 +77,7 @@ O agregado é composto pelos seguintes elementos:
 - Carga Química (Aggregate Root)
 - Produto Químico (Entidade)
 - Documentos (Entidade)
-- Testes (Entidade)
+- Inspeções (Entidade)
 - Responsável Técnico (Entidade)
 
 ```mermaid

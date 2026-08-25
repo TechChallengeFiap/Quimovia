@@ -2,7 +2,7 @@
 
 ## Contexto do Domínio
 
-O domínio **Testes de Segurança das Cargas e Produtos** é responsável por gerenciar a realização, o registro e a validação dos testes de segurança aplicados aos produtos e às cargas químicas durante o processo de movimentação portuária.
+O domínio **Inspeções** é responsável por gerenciar a realização, o registro e a validação dos testes de segurança aplicados aos produtos e às cargas químicas durante o processo de movimentação portuária.
 
 Seu principal objetivo é garantir que cada carga ou produto químico seja submetido aos testes exigidos pelas normas de segurança, registrando seus resultados para apoiar a tomada de decisão sobre a movimentação da carga.
 
