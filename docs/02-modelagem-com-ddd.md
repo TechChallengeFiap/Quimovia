@@ -1,36 +1,334 @@
-# Modelagem com Domain Driven Design
-Nesse documento, iremos apresentar as modelagens divididos por domínios, no qual iremos te redirecionar para cada documento de cada domínio, para que você possa entender melhor cada modelagem.
+# Modelagem com Domain-Driven Design
 
-## Domínios:
-- ### [Cargas Químicas](cargas-quimicas/02-modelagem-com-ddd.md)
-- ### [Documentações de Cargas e Produtos](documentacoes-cargas-produtos/02-modelagem-com-ddd.md)
-- ### [Inspeções](inspecoes/02-modelagem-com-ddd.md)
-- ### [Produtos Químicos](produtos-quimicos/02-modelagem-com-ddd.md)
-- ### [Usuários e Operações](usuarios-operacoes/02-modelagem-com-ddd.md)
+A modelagem com **Domain-Driven Design (DDD)** organiza o Quimovia a partir dos conceitos e das responsabilidades do negócio. Nesta seção são apresentados os **contextos**, as **entidades**, os **agregados** e os **objetos de valor** que compõem o domínio.
 
+## Contextos
 
-## Linguagem Ubíqua
-Na tabela abaixo esta listado os termos e significados que serão utilizados no projeto, com o objetivo de criar uma linguagem comum entre todos os envolvidos no projeto e aos leitores, garantindo que todos compreendam os termos e conceitos utilizados no sistema.
+O domínio foi dividido em **cinco contextos**, cada um responsável por uma parte específica do processo:
 
-| Termo | Significado |
-|-------|-------------|
-| **Administrador do Sistema** | Usuário responsável por gerenciar os usuários e perfis do sistema, garantindo que cada usuário tenha as permissões corretas de acordo com seu perfil. |
-| **Analista** | Usuário responsável por validar a documentação e emitir o Parecer Documental. |
-| **Carga Química** | Mercadoria contendo produtos químicos que será transportada no porto. Após apresentação das documentações e inspeções obrigatórias dessa carga, será decidida a liberação ou não da carga. |
-| **Classificação de Risco** | Avaliação do risco associado a cada carga química, considerando fatores como toxicidade, inflamabilidade, reatividade e outros. |
-| **Documento Anexado** | Arquivo enviado pelo embarcador como parte da documentação da carga, utilizado para comprovar o atendimento às exigências legais, regulatórias e operacionais. |
-| **Documentação da Carga** | Conjunto de informações e documentos enviados pelo embarcador para uma carga química. |
-| **Documentação Não Conforme** | Documentação que apresenta inconsistências ou pendências e exige correção antes da continuidade do processo. |
-| **Documentação Obrigatória** | Conjunto de documentos que devem ser apresentados para cada carga química, incluindo certificados de análise, fichas de segurança, autorizações e outros. |
-| **Documentação Conforme** | Documentação que atende aos requisitos exigidos e pode seguir para a etapa de inspeção. |
-| **Embarcador** | Usuário externo responsável pela chegada das novas cargas químicas no porto. Ele irá registrar as cargas e produtos da carga, além de enviar a documentação e inspeções obrigatórias para cada carga. |
-| **Fiscal** | Usuário responsável por realizar a inspeção física da carga e emitir o Laudo de Inspeção. Também é responsável por cadastrar as inspeções obrigatórias para cada produto químico. |
-| **Gestor Operacional** | Usuário responsável por acompanhar e gerenciar o status das cargas químicas, e também responsável pela auditoria do sistema, garantindo que todas as informações estejam corretas e atualizadas. |
-| **Operador Portuário** | Usuário responsável pelo acompanhamento das cargas químicas no porto, alterando status, validando documentos e inspeções, garantindo que todas as informações estejam corretas e atualizadas. |
-| **Parecer Documental** | Resultado da análise realizada pelo Analista sobre a documentação apresentada. |
-| **Parecer Técnico da Carga** | Documento emitido pelo Responsável Técnico que registra a decisão final sobre a movimentação da carga com base nas análises documental e de inspeção. |
-| **Produto Químico** | Substância química que será transportada no porto, podendo ser perigosa ou não, e que possui documentações e inspeções obrigatórias. |
-| **Responsável Técnico** | Usuário responsável pelo cadastro de novos produtos químicos, documentações obrigatórias e inspeções obrigatórias para cada produto químico, e também responsável pela aprovação ou reprovação de cargas químicas. |
-| **Status da Carga** | Indicação do estado atual da carga química, podendo ser "Em Análise", "Aprovado", "Reprovado" ou outros status definidos pelo sistema. |
-| **Inspeção** | Conjunto de inspeções que devem ser realizadas em cada carga química para garantir que ela atende aos padrões de qualidade e segurança exigidos pelas regulamentações. |
-| **Usuário** | Pessoa que interage com o sistema, podendo ter diferentes perfis e permissões de acesso, como Operador Portuário, Embarcador, Analista, Fiscal, Administrador do Sistema e Gestor Operacional. |
+| Contexto | Responsabilidade |
+|---|---|
+| **Gestão de Cargas** | Controlar o registro, o acompanhamento e o ciclo de vida das cargas químicas. |
+| **Produtos Químicos** | Manter o catálogo de produtos e suas características de risco. |
+| **Conformidade Documental** | Controlar o envio, a análise e o parecer dos documentos da carga. |
+| **Inspeções** | Controlar a realização das inspeções e a emissão dos respectivos laudos. |
+| **Identidade e Acesso** | Gerenciar usuários, autenticação, perfis e permissões. |
+
+A **Gestão de Cargas** utiliza o cadastro de **Produtos Químicos** e recebe os resultados produzidos por **Conformidade Documental** e **Inspeções**. O contexto **Identidade e Acesso** atende os demais contextos, garantindo que cada operação seja executada somente por usuários autorizados.
+
+```mermaid
+flowchart TD
+    P["Produtos Químicos"] -->|Produto ativo| C["Gestão de Cargas"]
+    C -->|Carga registrada| D["Conformidade Documental"]
+    D -->|Documentação conforme| I["Inspeções"]
+    D -->|Parecer documental| C
+    I -->|Laudo de inspeção| C
+    A["Identidade e Acesso"] -.->|Autoriza operações| C
+```
+
+## Entidades
+
+As entidades representam elementos que possuem identidade própria e permanecem reconhecíveis durante seu ciclo de vida.
+
+| Entidade | Contexto | Responsabilidade |
+|---|---|---|
+| **Carga Química** | Gestão de Cargas | Representar a carga e controlar seu ciclo de vida. |
+| **Parecer Técnico** | Gestão de Cargas | Registrar a avaliação emitida pelo responsável técnico. |
+| **Produto Químico** | Produtos Químicos | Representar um produto cadastrado e suas características. |
+| **Documentação da Carga** | Conformidade Documental | Representar o conjunto de documentos vinculados a uma carga. |
+| **Documento Anexado** | Conformidade Documental | Representar um arquivo enviado pelo embarcador. |
+| **Parecer Documental** | Conformidade Documental | Registrar o resultado da análise realizada pelo analista. |
+| **Inspeção** | Inspeções | Representar a avaliação física realizada sobre uma carga. |
+| **Laudo de Inspeção** | Inspeções | Registrar os resultados e as observações da inspeção. |
+| **Usuário** | Identidade e Acesso | Representar uma pessoa cadastrada no sistema. |
+| **Sessão** | Identidade e Acesso | Representar um acesso autenticado com validade definida. |
+| **Perfil** | Identidade e Acesso | Reunir as permissões correspondentes a uma função. |
+
+O **Embarcador**, o **Analista**, o **Fiscal**, o **Responsável Técnico**, o **Operador Portuário**, o **Gestor Operacional** e o **Administrador do Sistema** são representados por usuários associados aos respectivos perfis. Dessa forma, essas funções não precisam ser modeladas como entidades independentes.
+
+## Agregados
+
+Os agregados reúnem entidades e objetos de valor que precisam permanecer consistentes durante uma operação. Cada agregado possui uma **raiz**, responsável por controlar as alterações em seus elementos internos.
+
+| Agregado | Raiz | Elementos internos | Referências externas |
+|---|---|---|---|
+| **Carga Química** | Carga Química | Parecer Técnico, Status da Carga e Quantidade. | Produto, usuários, documentação e inspeções. |
+| **Produto Químico** | Produto Químico | Número ONU, Classe de Risco, Estado Físico e Status do Produto. | Usuários autorizados. |
+| **Documentação da Carga** | Documentação da Carga | Documentos Anexados, Parecer Documental, Status da Documentação e Resultado do Parecer. | Carga, embarcador e analista. |
+| **Inspeção** | Inspeção | Laudo de Inspeção, Itens de Inspeção, Status e Resultado da Inspeção. | Carga, produto e fiscal. |
+| **Usuário** | Usuário | Sessões, E-mail e Status do Usuário. | Perfil. |
+| **Perfil** | Perfil | Permissões. | Usuários associados. |
+
+Os agregados pertencentes a outros contextos devem ser relacionados por identificadores, sem serem incorporados como elementos internos. Assim, a **Carga Química** referencia produto, documentação, inspeções e usuários, mas não controla diretamente esses elementos.
+
+Essa separação preserva os limites de cada contexto e evita que a Carga Química se torne um agregado excessivamente grande e acoplado.
+
+### Carga Química
+
+```mermaid
+classDiagram
+    class CargaQuimica {
+        <<AggregateRoot>>
+        +id
+        +produtoQuimicoId
+        +embarcadorId
+        +responsavelTecnicoId
+        +documentacaoCargaId
+        +inspecaoIds
+        +status
+        +quantidade
+        +atribuirResponsavelTecnico()
+        +alterarStatus()
+        +registrarParecerTecnico()
+    }
+
+    class ParecerTecnico {
+        <<Entity>>
+        +id
+        +resultado
+        +justificativa
+        +emitidoEm
+    }
+
+    class StatusCarga {
+        <<ValueObject>>
+        +valor
+    }
+
+    class Quantidade {
+        <<ValueObject>>
+        +valor
+        +unidadeMedida
+    }
+
+    CargaQuimica "1" *-- "0..1" ParecerTecnico
+    CargaQuimica *-- StatusCarga
+    CargaQuimica *-- Quantidade
+```
+
+Produto, documentação, inspeções e usuários são representados por identificadores e permanecem sob responsabilidade de seus próprios agregados.
+
+### Produto Químico
+
+```mermaid
+classDiagram
+    class ProdutoQuimico {
+        <<AggregateRoot>>
+        +id
+        +codigo
+        +nomeTecnico
+        +nomeComercial
+        +numeroONU
+        +classeRisco
+        +estadoFisico
+        +status
+        +atualizarDados()
+        +ativar()
+        +inativar()
+    }
+
+    class NumeroONU {
+        <<ValueObject>>
+        +valor
+    }
+
+    class ClasseRisco {
+        <<ValueObject>>
+        +valor
+    }
+
+    class EstadoFisico {
+        <<ValueObject>>
+        +valor
+    }
+
+    class StatusProduto {
+        <<ValueObject>>
+        +valor
+    }
+
+    ProdutoQuimico *-- NumeroONU
+    ProdutoQuimico *-- ClasseRisco
+    ProdutoQuimico *-- EstadoFisico
+    ProdutoQuimico *-- StatusProduto
+```
+
+### Documentação da Carga
+
+```mermaid
+classDiagram
+    class DocumentacaoCarga {
+        <<AggregateRoot>>
+        +id
+        +cargaQuimicaId
+        +embarcadorId
+        +status
+        +dataEnvio
+        +adicionarDocumento()
+        +substituirDocumento()
+        +enviarParaAnalise()
+        +registrarParecer()
+    }
+
+    class DocumentoAnexado {
+        <<Entity>>
+        +id
+        +tipo
+        +nomeArquivo
+        +dataEmissao
+        +dataValidade
+    }
+
+    class ParecerDocumental {
+        <<Entity>>
+        +id
+        +analistaId
+        +resultado
+        +justificativa
+        +emitidoEm
+    }
+
+    class StatusDocumentacao {
+        <<ValueObject>>
+        +valor
+    }
+
+    class ResultadoParecer {
+        <<ValueObject>>
+        +valor
+    }
+
+    DocumentacaoCarga "1" *-- "1..*" DocumentoAnexado
+    DocumentacaoCarga "1" *-- "0..1" ParecerDocumental
+    DocumentacaoCarga *-- StatusDocumentacao
+    ParecerDocumental *-- ResultadoParecer
+```
+
+### Inspeção
+
+```mermaid
+classDiagram
+    class Inspecao {
+        <<AggregateRoot>>
+        +id
+        +cargaQuimicaId
+        +produtoQuimicoId
+        +fiscalId
+        +status
+        +iniciar()
+        +registrarItem()
+        +concluir()
+        +emitirLaudo()
+    }
+
+    class LaudoInspecao {
+        <<Entity>>
+        +id
+        +resultado
+        +observacoes
+        +emitidoEm
+    }
+
+    class ItemInspecao {
+        <<ValueObject>>
+        +requisito
+        +resultado
+        +observacao
+    }
+
+    class StatusInspecao {
+        <<ValueObject>>
+        +valor
+    }
+
+    class ResultadoInspecao {
+        <<ValueObject>>
+        +valor
+    }
+
+    Inspecao "1" *-- "0..1" LaudoInspecao
+    Inspecao "1" *-- "1..*" ItemInspecao
+    Inspecao *-- StatusInspecao
+    LaudoInspecao *-- ResultadoInspecao
+```
+
+### Identidade e Acesso
+
+```mermaid
+classDiagram
+    class Usuario {
+        <<AggregateRoot>>
+        +id
+        +nome
+        +email
+        +senhaHash
+        +perfilId
+        +status
+        +autenticar()
+        +alterarSenha()
+        +ativar()
+        +bloquear()
+    }
+
+    class Sessao {
+        <<Entity>>
+        +id
+        +token
+        +criadaEm
+        +expiraEm
+        +encerrar()
+    }
+
+    class Perfil {
+        <<AggregateRoot>>
+        +id
+        +nome
+        +adicionarPermissao()
+        +removerPermissao()
+    }
+
+    class Email {
+        <<ValueObject>>
+        +valor
+    }
+
+    class StatusUsuario {
+        <<ValueObject>>
+        +valor
+    }
+
+    class Permissao {
+        <<ValueObject>>
+        +recurso
+        +acao
+    }
+
+    Usuario "1" *-- "0..*" Sessao
+    Usuario *-- Email
+    Usuario *-- StatusUsuario
+    Usuario ..> Perfil : referencia
+    Perfil "1" *-- "1..*" Permissao
+```
+
+## Objetos de valor
+
+Os objetos de valor representam características definidas por seus dados e não possuem identidade própria.
+
+| Objeto de Valor | Contexto | Responsabilidade |
+|---|---|---|
+| **Status da Carga** | Gestão de Cargas | Representar a etapa atual da carga. |
+| **Quantidade** | Gestão de Cargas | Representar a quantidade transportada e sua unidade de medida. |
+| **Número ONU** | Produtos Químicos | Representar o código internacional de identificação do produto. |
+| **Classe de Risco** | Produtos Químicos | Representar os perigos associados ao produto. |
+| **Estado Físico** | Produtos Químicos | Indicar se o produto é sólido, líquido ou gasoso. |
+| **Status do Produto** | Produtos Químicos | Indicar a situação atual do cadastro do produto. |
+| **Status da Documentação** | Conformidade Documental | Representar a etapa atual da análise documental. |
+| **Resultado do Parecer** | Conformidade Documental | Indicar se a documentação está conforme ou possui pendências. |
+| **Item de Inspeção** | Inspeções | Representar um requisito verificado durante a inspeção. |
+| **Status da Inspeção** | Inspeções | Representar a etapa atual da inspeção. |
+| **Resultado da Inspeção** | Inspeções | Indicar o resultado obtido após as verificações. |
+| **E-mail** | Identidade e Acesso | Representar e validar o endereço eletrônico do usuário. |
+| **Status do Usuário** | Identidade e Acesso | Indicar se o usuário está ativo, inativo ou bloqueado. |
+| **Permissão** | Identidade e Acesso | Representar uma ação autorizada sobre um recurso. |
+
+As regras associadas a esses elementos serão apresentadas no tópico **Regras de negócio**, evitando duplicação entre os documentos.
