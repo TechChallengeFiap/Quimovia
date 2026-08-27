@@ -8,21 +8,21 @@ O domínio foi dividido em **cinco contextos**, cada um responsável por uma par
 
 | Contexto | Responsabilidade |
 |---|---|
-| **Gestão de Cargas** | Controlar o registro, o acompanhamento e o ciclo de vida das cargas químicas. |
+| **Gestão de Cargas** | Controlar o registro, a composição, o acompanhamento e o ciclo de vida das cargas químicas. |
 | **Produtos Químicos** | Manter o catálogo de produtos e suas características de risco. |
-| **Conformidade Documental** | Controlar o envio, a análise e o parecer dos documentos da carga. |
-| **Inspeções** | Controlar a realização das inspeções e a emissão dos respectivos laudos. |
+| **Conformidade Documental** | Controlar documentos e pareceres referentes à carga e aos produtos que a compõem. |
+| **Inspeções** | Controlar as inspeções da carga e de seus produtos, com os respectivos laudos. |
 | **Identidade e Acesso** | Gerenciar usuários, autenticação, perfis e permissões. |
 
-A **Gestão de Cargas** utiliza o cadastro de **Produtos Químicos** e recebe os resultados produzidos por **Conformidade Documental** e **Inspeções**. O contexto **Identidade e Acesso** atende os demais contextos, garantindo que cada operação seja executada somente por usuários autorizados.
+A **Gestão de Cargas** utiliza o catálogo de **Produtos Químicos** para compor as cargas e recebe os resultados de **Conformidade Documental** e **Inspeções**, identificando se cada avaliação se refere à carga ou a um produto nela contido. O contexto **Identidade e Acesso** atende os demais contextos, garantindo que cada operação seja executada somente por usuários autorizados.
 
 ```mermaid
 flowchart TD
-    P["Produtos Químicos"] -->|Produto ativo| C["Gestão de Cargas"]
-    C -->|Carga registrada| D["Conformidade Documental"]
-    D -->|Documentação conforme| I["Inspeções"]
-    D -->|Parecer documental| C
-    I -->|Laudo de inspeção| C
+    P["Produtos Químicos"] -->|Produtos ativos| C["Gestão de Cargas"]
+    C -->|Carga e itens registrados| D["Conformidade Documental"]
+    D -->|Carga e itens conformes| I["Inspeções"]
+    D -->|Pareceres por escopo| C
+    I -->|Laudos por escopo| C
     A["Identidade e Acesso"] -.->|Autoriza operações| C
 ```
 
@@ -32,13 +32,14 @@ As entidades representam elementos que possuem identidade própria e permanecem 
 
 | Entidade | Contexto | Responsabilidade |
 |---|---|---|
-| **Carga Química** | Gestão de Cargas | Representar a carga e controlar seu ciclo de vida. |
-| **Parecer Técnico** | Gestão de Cargas | Registrar a avaliação emitida pelo responsável técnico. |
+| **Carga Química** | Gestão de Cargas | Representar o conjunto transportado, sua composição e seu ciclo de vida. |
+| **Item da Carga** | Gestão de Cargas | Identificar um produto dentro da carga, com sua quantidade e unidade de medida. |
+| **Parecer Técnico** | Gestão de Cargas | Registrar a avaliação final da carga, considerando os resultados do conjunto e de seus itens. |
 | **Produto Químico** | Produtos Químicos | Representar um produto cadastrado e suas características. |
-| **Documentação da Carga** | Conformidade Documental | Representar o conjunto de documentos vinculados a uma carga. |
-| **Documento Anexado** | Conformidade Documental | Representar um arquivo enviado pelo embarcador. |
-| **Parecer Documental** | Conformidade Documental | Registrar o resultado da análise realizada pelo analista. |
-| **Inspeção** | Inspeções | Representar a avaliação física realizada sobre uma carga. |
+| **Documentação da Carga** | Conformidade Documental | Reunir os documentos e pareceres referentes à carga e a seus itens. |
+| **Documento Anexado** | Conformidade Documental | Representar um arquivo enviado pelo embarcador, identificando sua aplicação à carga ou a seus itens. |
+| **Parecer Documental** | Conformidade Documental | Registrar o resultado da análise da carga ou de um item identificado. |
+| **Inspeção** | Inspeções | Representar a avaliação física da carga como conjunto ou do produto de um item identificado. |
 | **Laudo de Inspeção** | Inspeções | Registrar os resultados e as observações da inspeção. |
 | **Usuário** | Identidade e Acesso | Representar uma pessoa cadastrada no sistema. |
 | **Sessão** | Identidade e Acesso | Representar um acesso autenticado com validade definida. |
@@ -52,34 +53,51 @@ Os agregados reúnem entidades e objetos de valor que precisam permanecer consis
 
 | Agregado | Raiz | Elementos internos | Referências externas |
 |---|---|---|---|
-| **Carga Química** | Carga Química | Parecer Técnico, Status da Carga e Quantidade. | Produto, usuários, documentação e inspeções. |
+| **Carga Química** | Carga Química | Itens da Carga, Quantidade de cada item, Parecer Técnico e Status da Carga. | Produtos, usuários, documentação e inspeções. |
 | **Produto Químico** | Produto Químico | Número ONU, Classe de Risco, Estado Físico e Status do Produto. | Usuários autorizados. |
-| **Documentação da Carga** | Documentação da Carga | Documentos Anexados, Parecer Documental, Status da Documentação e Resultado do Parecer. | Carga, embarcador e analista. |
-| **Inspeção** | Inspeção | Laudo de Inspeção, Itens de Inspeção, Status e Resultado da Inspeção. | Carga, produto e fiscal. |
+| **Documentação da Carga** | Documentação da Carga | Documentos Anexados, Pareceres Documentais, Escopo da Avaliação, Status da Documentação e Resultado do Parecer. | Carga, itens da carga, embarcador e analista. |
+| **Inspeção** | Inspeção | Laudo de Inspeção, Itens de Inspeção, Escopo da Avaliação, Status e Resultado da Inspeção. | Carga, item avaliado quando aplicável e fiscal. |
 | **Usuário** | Usuário | Sessões, E-mail e Status do Usuário. | Perfil. |
 | **Perfil** | Perfil | Permissões. | Usuários associados. |
 
-Os agregados pertencentes a outros contextos devem ser relacionados por identificadores, sem serem incorporados como elementos internos. Assim, a **Carga Química** referencia produto, documentação, inspeções e usuários, mas não controla diretamente esses elementos.
+Os agregados pertencentes a outros contextos devem ser relacionados por identificadores, sem serem incorporados como elementos internos. A **Carga Química** controla seus **Itens da Carga**, e cada item referencia um produto do catálogo. Produtos, documentação, inspeções e usuários permanecem fora do agregado da carga.
 
 Essa separação preserva os limites de cada contexto e evita que a Carga Química se torne um agregado excessivamente grande e acoplado.
 
 ### Carga Química
 
+A carga reúne **um ou mais itens**, que podem referenciar o mesmo produto ou produtos de tipos diferentes. Cada item possui identidade e quantidade próprias; assim, duas ocorrências do mesmo produto podem ser identificadas separadamente nas avaliações.
+
 ```mermaid
 classDiagram
+    direction TB
     class CargaQuimica {
         <<AggregateRoot>>
         +id
-        +produtoQuimicoId
+        +itens
         +embarcadorId
         +responsavelTecnicoId
         +documentacaoCargaId
         +inspecaoIds
         +status
-        +quantidade
+        +adicionarItem()
+        +alterarItem()
+        +removerItem()
         +atribuirResponsavelTecnico()
         +alterarStatus()
         +registrarParecerTecnico()
+    }
+
+    class ItemCarga {
+        <<Entity>>
+        +id
+        +produtoQuimicoId
+        +quantidade
+    }
+
+    class ProdutoQuimico {
+        <<ExternalAggregate>>
+        +id
     }
 
     class ParecerTecnico {
@@ -101,12 +119,14 @@ classDiagram
         +unidadeMedida
     }
 
+    CargaQuimica "1" *-- "1..*" ItemCarga
     CargaQuimica "1" *-- "0..1" ParecerTecnico
     CargaQuimica *-- StatusCarga
-    CargaQuimica *-- Quantidade
+    ItemCarga "1" *-- "1" Quantidade
+    ItemCarga "0..*" ..> "1" ProdutoQuimico : referencia por identificador
 ```
 
-Produto, documentação, inspeções e usuários são representados por identificadores e permanecem sob responsabilidade de seus próprios agregados.
+A **Quantidade** pertence ao item, não à carga inteira. O **Produto Químico** continua sendo um cadastro independente: sua presença em várias cargas ou itens não exige duplicar esse cadastro.
 
 ### Produto Químico
 
@@ -155,6 +175,8 @@ classDiagram
 
 ### Documentação da Carga
 
+A **Documentação da Carga** reúne os arquivos e os pareceres relativos ao conjunto e aos produtos transportados. Cada parecer identifica seu alvo, e um mesmo arquivo pode ser vinculado aos diferentes alvos aos quais se aplica.
+
 ```mermaid
 classDiagram
     class DocumentacaoCarga {
@@ -162,6 +184,7 @@ classDiagram
         +id
         +cargaQuimicaId
         +embarcadorId
+        +pareceres
         +status
         +dataEnvio
         +adicionarDocumento()
@@ -173,6 +196,7 @@ classDiagram
     class DocumentoAnexado {
         <<Entity>>
         +id
+        +escopos
         +tipo
         +nomeArquivo
         +dataEmissao
@@ -183,6 +207,7 @@ classDiagram
         <<Entity>>
         +id
         +analistaId
+        +escopo
         +resultado
         +justificativa
         +emitidoEm
@@ -198,13 +223,25 @@ classDiagram
         +valor
     }
 
+    class EscopoAvaliacao {
+        <<ValueObject>>
+        +tipo
+        +itemCargaId
+    }
+
     DocumentacaoCarga "1" *-- "1..*" DocumentoAnexado
-    DocumentacaoCarga "1" *-- "0..1" ParecerDocumental
+    DocumentacaoCarga "1" *-- "0..*" ParecerDocumental
     DocumentacaoCarga *-- StatusDocumentacao
     ParecerDocumental *-- ResultadoParecer
+    DocumentoAnexado "1" *-- "1..*" EscopoAvaliacao
+    ParecerDocumental "1" *-- "1" EscopoAvaliacao
 ```
 
+O **Escopo da Avaliação** identifica a carga inteira (`CARGA`, sem item) ou o produto de um item específico (`ITEM_CARGA`, com `itemCargaId`). A carga de referência é identificada pela Documentação da Carga ou pela Inspeção à qual esse escopo pertence.
+
 ### Inspeção
+
+Uma carga pode possuir **diversas inspeções**, tanto do conjunto quanto de seus produtos. Cada inspeção registra seu escopo, e os produtos avaliados são identificados pelo **Item da Carga**, evitando confusão quando o mesmo produto aparece mais de uma vez.
 
 ```mermaid
 classDiagram
@@ -212,7 +249,7 @@ classDiagram
         <<AggregateRoot>>
         +id
         +cargaQuimicaId
-        +produtoQuimicoId
+        +escopo
         +fiscalId
         +status
         +iniciar()
@@ -246,11 +283,20 @@ classDiagram
         +valor
     }
 
+    class EscopoAvaliacao {
+        <<ValueObject>>
+        +tipo
+        +itemCargaId
+    }
+
     Inspecao "1" *-- "0..1" LaudoInspecao
     Inspecao "1" *-- "1..*" ItemInspecao
+    Inspecao "1" *-- "1" EscopoAvaliacao
     Inspecao *-- StatusInspecao
     LaudoInspecao *-- ResultadoInspecao
 ```
+
+O **Item da Carga** representa um produto transportado; o **Item de Inspeção** representa um requisito verificado. O laudo se refere ao mesmo escopo da inspeção que o originou.
 
 ### Identidade e Acesso
 
@@ -317,13 +363,14 @@ Os objetos de valor representam características definidas por seus dados e não
 | Objeto de Valor | Contexto | Responsabilidade |
 |---|---|---|
 | **Status da Carga** | Gestão de Cargas | Representar a etapa atual da carga. |
-| **Quantidade** | Gestão de Cargas | Representar a quantidade transportada e sua unidade de medida. |
+| **Quantidade** | Gestão de Cargas | Representar a quantidade e a unidade de medida de cada Item da Carga. |
 | **Número ONU** | Produtos Químicos | Representar o código internacional de identificação do produto. |
 | **Classe de Risco** | Produtos Químicos | Representar os perigos associados ao produto. |
 | **Estado Físico** | Produtos Químicos | Indicar se o produto é sólido, líquido ou gasoso. |
 | **Status do Produto** | Produtos Químicos | Indicar a situação atual do cadastro do produto. |
 | **Status da Documentação** | Conformidade Documental | Representar a etapa atual da análise documental. |
 | **Resultado do Parecer** | Conformidade Documental | Indicar se a documentação está conforme ou possui pendências. |
+| **Escopo da Avaliação** | Conformidade Documental e Inspeções | Identificar se o documento, parecer ou inspeção se refere à carga inteira ou ao produto de um item específico. |
 | **Item de Inspeção** | Inspeções | Representar um requisito verificado durante a inspeção. |
 | **Status da Inspeção** | Inspeções | Representar a etapa atual da inspeção. |
 | **Resultado da Inspeção** | Inspeções | Indicar o resultado obtido após as verificações. |
