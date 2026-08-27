@@ -1,6 +1,6 @@
 # Quimovia
 
-> Projetos acadêmico desenvolvido para o Tech Challenge da pós-graduação em Desenvolvimento Full Stack da FIAP.
+Projeto acadêmico desenvolvido para o Tech Challenge da pós-graduação em Desenvolvimento Full Stack da FIAP.
 
 ## Sobre o projeto
 
