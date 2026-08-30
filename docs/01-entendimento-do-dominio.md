@@ -87,24 +87,3 @@ Além disso:
 Nas próximas fases, o Quimovia poderá evoluir para uma **aplicação web responsiva**, com área administrativa, armazenamento de documentos, notificações e integrações externas. Também poderá ser desenvolvida uma **aplicação móvel** para consultas e atividades realizadas no local da operação.
 
 A evolução para microsserviços deverá ser avaliada somente se o crescimento e as necessidades da solução justificarem essa complexidade.
-
-## Linguagem do domínio
-
-Os termos abaixo formam o vocabulário adotado pelo projeto e devem ser utilizados com o mesmo significado em toda a documentação e, futuramente, no código.
-
-| Termo | Significado no projeto |
-|---|---|
-| **Produto Químico** | Substância associada a uma carga e que determina requisitos como classificação de risco, documentos e inspeções. |
-| **Carga Química** | Mercadoria que contém produtos químicos e será submetida ao fluxo de análise antes de sua movimentação no porto. |
-| **Classificação de Risco** | Classificação dos perigos associados ao produto químico, utilizada para definir os requisitos aplicáveis. |
-| **Documentação da Carga** | Conjunto de documentos enviados pelo embarcador para análise. |
-| **Documento Obrigatório** | Tipo de documento exigido para determinado produto químico ou operação. |
-| **Documento Anexado** | Arquivo enviado para atender a um documento obrigatório. |
-| **Parecer Documental** | Resultado da análise da documentação, indicando conformidade ou pendências. |
-| **Inspeção** | Verificação realizada sobre a carga para avaliar o atendimento aos requisitos definidos. |
-| **Laudo de Inspeção** | Registro dos resultados e das observações obtidos durante a inspeção. |
-| **Parecer Técnico** | Avaliação emitida pelo responsável técnico com base nos resultados documentais e de inspeção. |
-| **Pendência** | Requisito documental, técnico ou operacional ainda não atendido e que pode impedir o avanço da carga. |
-| **Status da Carga** | Estado atual da carga dentro do fluxo operacional. |
-| **Movimentação da Carga** | Ação operacional permitida após o atendimento dos requisitos e o registro da decisão técnica. |
-| **Registro de Auditoria** | Histórico de uma ação relevante, contendo seu responsável e o momento em que foi realizada. |

@@ -14,7 +14,7 @@ Nesta primeira fase, o projeto está concentrado na **compreensão e modelagem d
 
 De forma resumida, a solução foi pensada para apoiar as seguintes etapas:
 
-1. regristro da carga e dos produtos químicos associados;
+1. registro da carga e dos produtos químicos associados;
 2. envio e análise da documentação obrigatória;
 3. realização das inspeções previstas;
 4. emissão dos pareceres necessários;
@@ -50,14 +50,14 @@ Esta fase contempla a documentação e o planejamento da solução
 |---:|---|---|
 | 01 | [Entendimento do domínio](docs/01-entendimento-do-dominio.md) | Problema, objetivo, atores, processos e linguagem utilizada. |
 | 02 | [Modelagem com DDD](docs/02-modelagem-com-ddd.md) | Contextos, entidades, agregados e objetos de valor. |
-| 03 | [Regras de negócio](docs/03-regras-de-negocio.md) | Restrições e comportamentos que orientam o sistema. |
-| 04 | Casos de uso | Ações de atores, entradas, saídas, regras e exceções. |
-| 05 | Diagramas | Visão consolidada dos modelos e fluxos apresentados anteriormente. |
-| 06 | Arquitetura proposta | Estrutura técnica escolhida para implementar o domínio. |
-| 07 | Organização do projeto | Como a arquitetura será refletida nas pastas e módulos. |
-| 08 | Decisões arquiteturais | Justificativas para DDD, Clean Architecture, monólito modular e tecnologias. |
-| 09 | Aplicação de JavaScript e TypeScript | Como os recursos da linguagem serão usados na implementação. |
-| 10 | Planejamento de qualidade | Estratégias de testes, cenários críticos e critérios de qualidade. |
+| 03 | [Casos de uso](docs/03-casos-de-uso.md) | Ações de atores, entradas, saídas, regras e exceções. |
+| 04 | [Regras de negócio](docs/04-regras-de-negócio.md) | Restrições e comportamentos que orientam o sistema. |
+| 05 | [Arquitetura proposta](docs/05-arquitetura-proposta.md) | Estrutura técnica escolhida para implementar o domínio. |
+| 06 | [Organização do projeto](docs/06-organização-do-projeto.md) | Como a arquitetura será refletida nas pastas e módulos. |
+| 07 | [Diagramas](docs/07-diagramas.md) | Visão consolidada dos modelos e fluxos apresentados anteriormente. |
+| 08 | [Planejamento de qualidade](docs/08-planejamento-de-qualidade-de-software.md) | Estratégias de testes, cenários críticos e critérios de qualidade. |
+| 09 | [Aplicação de JavaScript e TypeScript](docs/09-aplicacao-javascript-avancado-e-typescript.md) | Como os recursos da linguagem serão usados na implementação. |
+| 10 | [Decisões arquiteturais](docs/10-decisoes-arquiteturais.md) | Justificativas para DDD, Clean Architecture, monólito modular e tecnologias. |
 
 ## Arquitetura e tecnologias planejadas
 
