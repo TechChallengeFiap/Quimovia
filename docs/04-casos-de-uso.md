@@ -41,7 +41,7 @@ As condições abaixo se aplicam aos casos de uso, exceto quando a própria aç�
 
 ## Produtos químicos
 
-![Diagrama UML dos casos de cadastro de produtos e cadastro e controle de cargas](./diagrams/casos-de-uso-cadastros-controle.png)
+![Diagrama UML dos casos de cadastro de produtos e cadastro e controle de cargas](./docs/diagrams/casos-de-uso-cadastros-controle.png)
 
 ### UC-01 — Gerenciar produtos químicos
 
@@ -168,7 +168,7 @@ Permite acompanhar a situação consolidada da carga e identificar a qual item c
 
 ## Conformidade documental
 
-![Diagrama UML dos casos de envio, consulta e análise documental](./diagrams/casos-de-uso-documentacao.png)
+![Diagrama UML dos casos de envio, consulta e análise documental](./docs/diagrams/casos-de-uso-documentacao.png)
 
 ### UC-06 — Enviar ou corrigir documentação
 
@@ -222,7 +222,7 @@ Permite ao analista registrar a conformidade documental de cada escopo exigido e
 
 ## Inspeções
 
-![Diagrama UML dos casos de inspeção, avaliação técnica e liberação operacional](./diagrams/casos-de-uso-inspecao-liberacao.png)
+![Diagrama UML dos casos de inspeção, avaliação técnica e liberação operacional](./docs/diagrams/casos-de-uso-inspecao-liberacao.png)
 
 ### UC-08 — Realizar inspeção e emitir laudo
 
@@ -327,7 +327,7 @@ Permite interromper o avanço diante de um impedimento e controlar a retomada ap
 
 ## Identidade e acesso
 
-![Diagrama UML dos casos de identidade, consulta e auditoria](./diagrams/casos-de-uso-acesso-auditoria.png)
+![Diagrama UML dos casos de identidade, consulta e auditoria](./docs/diagrams/casos-de-uso-acesso-auditoria.png)
 
 ### UC-12 — Autenticar e encerrar sessão
 
