@@ -222,7 +222,7 @@ Permite ao analista registrar a conformidade documental de cada escopo exigido e
 
 ## Inspeções
 
-![Diagrama UML dos casos de inspeção, avaliação técnica e liberação operacional](../docs/diagrams/casos-de-uso-inspecao-liberacao.png)
+![Diagrama UML dos casos de inspeção, avaliação técnica e liberação operacional](../diagrams/casos-de-uso-inspecao-liberacao.png)
 
 ### UC-08 — Realizar inspeção e emitir laudo
 
@@ -327,7 +327,7 @@ Permite interromper o avanço diante de um impedimento e controlar a retomada ap
 
 ## Identidade e acesso
 
-![Diagrama UML dos casos de identidade, consulta e auditoria](../docs/diagrams/casos-de-uso-acesso-auditoria.png)
+![Diagrama UML dos casos de identidade, consulta e auditoria](../diagrams/casos-de-uso-acesso-auditoria.png)
 
 ### UC-12 — Autenticar e encerrar sessão
 
