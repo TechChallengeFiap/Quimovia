@@ -50,8 +50,8 @@ Esta fase contempla a documentação e o planejamento da solução
 |---:|---|---|
 | 01 | [Entendimento do domínio](docs/01-entendimento-do-dominio.md) | Problema, objetivo, atores, processos e linguagem utilizada. |
 | 02 | [Modelagem com DDD](docs/02-modelagem-com-ddd.md) | Contextos, entidades, agregados e objetos de valor. |
-| 03 | [Regras de negócio](docs/04-regras-de-negócio.md) | Restrições e comportamentos que orientam o sistema. |
-| 04 | [Casos de uso](docs/03-casos-de-uso.md) | Ações de atores, entradas, saídas, regras e exceções. |
+| 03 | [Regras de negócio](docs/03-regras-de-negócio.md) | Restrições e comportamentos que orientam o sistema. |
+| 04 | [Casos de uso](docs/04-casos-de-uso.md) | Ações de atores, entradas, saídas, regras e exceções. |
 | 05 | [Arquitetura proposta](docs/05-arquitetura-proposta.md) | Estrutura técnica escolhida para implementar o domínio. |
 | 06 | [Organização do projeto](docs/06-organização-do-projeto.md) | Como a arquitetura será refletida nas pastas e módulos. |
 | 07 | [Diagramas](docs/07-diagramas.md) | Visão consolidada dos modelos e fluxos apresentados anteriormente. |
