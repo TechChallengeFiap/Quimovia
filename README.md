@@ -52,16 +52,16 @@ Esta fase contempla a **documentação e o planejamento da solução**:
 
 | Seção | Documento | Conteúdo |
 |---:|---|---|
-| 01 | [Entendimento do domínio](docs/01-entendimento-do-dominio.md) | Problema, objetivo, atores, processos e linguagem utilizada. |
+| 01 | [Entendimento do domínio](docs/01-entendimento-do-dominio.md) | Problema, objetivo, atores e processos. |
 | 02 | [Modelagem com DDD](docs/02-modelagem-com-ddd.md) | Contextos, entidades, agregados e objetos de valor. |
 | 03 | [Regras de negócio](docs/03-regras-de-negócio.md) | Restrições e comportamentos que orientam o sistema. |
 | 04 | [Casos de uso](docs/04-casos-de-uso.md) | Ações de atores, entradas, saídas, regras e exceções. |
-| 05 | [Arquitetura proposta](docs/05-arquitetura-proposta.md) | Estrutura técnica escolhida para implementar o domínio. |
-| 06 | [Organização do projeto](docs/06-organização-do-projeto.md) | Como a arquitetura será refletida nas pastas e módulos. |
-| 07 | [Diagramas](docs/07-diagramas.md) | Visão consolidada dos modelos e fluxos apresentados anteriormente. |
-| 08 | [Planejamento de qualidade](docs/08-planejamento-de-qualidade-de-software.md) | Estratégias de testes, cenários críticos e critérios de qualidade. |
+| 05 | [Diagramas](docs/05-diagramas.md) | Visão consolidada dos modelos e fluxos apresentados anteriormente. |
+| 06 | [Arquitetura proposta](docs/06-arquitetura-proposta.md) | Estrutura técnica escolhida para implementar o domínio. |
+| 07 | [Organização do projeto](docs/07-organizacao-do-projeto.md) | Como a arquitetura será refletida nas pastas e módulos. |
+| 08 | [Decisões arquiteturais](docs/08-decisoes-arquiteturais.md) | Justificativas para DDD, Clean Architecture, monólito modular e tecnologias. |
 | 09 | [Aplicação de JavaScript e TypeScript](docs/09-aplicacao-javascript-avancado-e-typescript.md) | Como os recursos da linguagem serão usados na implementação. |
-| 10 | [Decisões arquiteturais](docs/10-decisoes-arquiteturais.md) | Justificativas para DDD, Clean Architecture, monólito modular e tecnologias. |
+| 10 | [Planejamento de qualidade](docs/10-planejamento-de-qualidade-de-software.md) | Estratégias de testes, cenários críticos e critérios de qualidade. |
 
 ## Arquitetura e tecnologias planejadas
 
